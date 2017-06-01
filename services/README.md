@@ -14,7 +14,7 @@ Heroku
 
 Jekyll
 
-Jenkins CI
+[Jenkins CI](jenkins.md)
 
 Node.js
 
