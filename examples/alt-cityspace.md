@@ -55,28 +55,25 @@ $ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
 1. Install dependencies
    We require several gems for CSS management. Use bundler to install them.
 
+   **If you don't have bundler yet, install it**
+   
    ```
-   # If you don't have bundler yet, install it
    $ gem install bundler
-
-   # Once bundler is installed:
+   ```
+   
+   **Once bundler is installed**
+   
+   ```
    $ cd docroot/themes/coa_intranet
    $ bundle install
    ```
-
-2. Download and install Dev Desktop ("DD") from https://dev.acquia.com/downloads.
-
-   1. Set "Desktop sites folder" to wherever you save your local projects
-   2. After installation, deselect "Launch Acquia Dev Desktop" and click "Finish".
-   3. Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.
-
-3. Download [the drush aliases file](https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing) from Google Drive and move it to the `~/.drush/` directory.
+2. Download [the drush aliases file](https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing) from Google Drive and move it to the `~/.drush/` directory. You may need to request access to this file.
 
    ```
    $ mv ~/PATH/TO/DOWNLOADED/austin1.aliases.drushrc.php ~/.drush/
    ```
 
-4. Download the Acquia Cloud database to your Desktop.
+3. Download the Acquia Cloud database to your Desktop.
 
    ```
    $ cd MY_PROJECT_DIRECTORY/
@@ -84,6 +81,14 @@ $ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
    ```
 
    *You can specify a different destination path - The important thing is to download it outside of your project directory so that it does not get added to the git repository.*
+
+
+4. Download and install Dev Desktop ("DD") from https://dev.acquia.com/downloads.
+
+   1. Set "Desktop sites folder" to wherever you save your local projects
+   2. After installation, deselect "Launch Acquia Dev Desktop" and click "Finish".
+   3. Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.
+
 
 5. Launch DevDesktop and select "Start with an existing Drupal site located on my computer".
 
@@ -95,7 +100,9 @@ $ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
 
 7. Copy `docroot/sites/cofa.settings.local.php` to `docroot/sites/settings.local.php`
 
-8. Sign In using the same credentials you established for your Drupal Admin account.
+8. Log in via Dev Desktop using the same credentials you established for your Acquia account.
+
+   ![Dev Desktop Login Window](https://www.function1.com/sites/default/files/ac.png)
 
 ## Environments
 
@@ -103,37 +110,41 @@ Due to some tech and resourcing constraints, CitySpace is not configured for con
 
 ### Production
 
-- **URL:** alpha.cityspace.austintexas.gov
+- **URL:** [alpha.cityspace.austintexas.gov]()
 - **Acquia:** [Prod](https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17643-090d2f38-2e13-4b3a-8e5d-c460d582df43)
-- **GitHub:** `master`
+- **GitHub Branch:** `master`
 - **Deployment:** Whenever somone accepts & merges a Pull Request (or batch of PRs) into `master` they should pull the updated branch onto their local machine and then manually initiate a deploy.
 
 ```
 $ git checkout master
 $ git pull
 $ git push acquia master
-
-# Run any drush scripts as necessary:
-# (Must be in docroot/)
+```
+**Run any drush scripts as necessary**
+(Must be in `docroot/`)
+```
 $ cd docroot/
-
-# Apply updates to config database from yml files
+```
+**Apply updates to config database from yml files (optional, only if you've edited yml files)**
+```
 $ drush @austin1.prod config-import active
-
-# Apply any pending database and entity schema updates
+```
+**Apply any pending database and entity schema updates (optional, only if you've edited database/schema)**
+```
 $ drush @austin1.prod updb --entity-updates
-
-# Clear cache
+```
+**Clear cache (always)**
+```
 $ drush @austin1.prod cr
 ```
 
 ### Test
 
-- **URL:** test.cityspace.austintexas.gov
+- **URL:** [test.cityspace.austintexas.gov]()
 
 - **Acquia:** [Test](https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17645-090d2f38-2e13-4b3a-8e5d-c460d582df43)
 
-- **GitHub:** `test`
+- **GitHub Branch:** `test`
 
 - **Description:** This is not meant to be a stable branch, but instead a way for developers to test their work in an environment that more closely matches `Prod`. As a result, it will be regularly destroyed and re-cloned from `master`.
 
@@ -157,7 +168,7 @@ The deployment process is similar to `Prod` but with a couple of exceptions.
 
 - **URL:** [http://localhost/]() 
 
-- **GitHub:** `mt-bonnell`
+- **GitHub Branch:** `mt-bonnell`
 
 - **CSS workflow:** Our theme is based on the [U.S. Web Design Standards](https://github.com/18F/web-design-standards). The USWDS is implemented in [Sass](http://sass-lang.com/guide) and uses the [Bourbon](http://bourbon.io/) and [Neat](http://neat.bourbon.io/) libraries for mixins and grid, respectively.
 
@@ -167,12 +178,14 @@ The deployment process is similar to `Prod` but with a couple of exceptions.
 
   ```
   $ cd docroot/themes/coa_intranet
-
-  # Tell Compass to listen for changes to the Sass directory (specified in config.rb)
+  ```
+  **Tell Compass to listen for changes to the Sass directory (specified in `config.rb`)**
+  ```
   $ compass watch
   >>> Compass is watching for changes. Press Ctrl-C to Stop.
-
-  # Edit a file in the _scss/ directory, then save it. Any compile errors will be displayed here.
+  ```
+  **Edit a file in the `_scss/` directory, then save it. Any compile errors will be displayed here.**
+  ```
   >>> Compass is watching for changes. Press Ctrl-C to Stop.
    modified assets/_scss/cityspace/_overrides.scss
       write assets/css/styles.css
@@ -196,40 +209,49 @@ The deployment process is similar to `Prod` but with a couple of exceptions.
 ## Useful Drush commands
 
 ### Database
+**Pull production database to test**
 ```
-# Pull production database to test:
 $ drush sql-sync -vv @austin1.prod @austin1.test
-
-# Pull production database to local:
+```
+**Pull production database to local**
+```
 $ drush sql-sync -vv @austin1.prod @loc.austin1
 ```
 
 ### Assets
 [Pull production files to test via Acquia](https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43)
+
+**Pull production files to local**
 ```
-# Pull production files to local:
 $ drush rsync @austin1.prod:%files sites/default/
 ```
 
 
 ### Deployment
+(Must be in `docroot/`)
 ```
-Apply updates to config database from yml files
+$ cd docroot/
+```
+**Apply updates to config database from yml files**
+```
 $ drush @austin1.prod config-import active
-
-# Apply any pending database and entity schema updates
+```
+**Apply any pending database and entity schema updates**
+```
 $ drush @austin1.prod updb --entity-updates
-
-# Clear cache
+```
+**Clear cache**
+```
 $ drush @austin1.prod cr
 ```
 
 ### Modules
+**Enables downloaded module if found, otherwise prompts to allow download of the latest recommended version & dependencies**
 ```
-# Enables downloaded module if found, otherwise prompts to allow download of the latest recommended version & dependencies
 $ drush en [module]
-
-# Uninstall module
+```
+**Uninstall module**
+```
 $ drush pmu [module]
 ```
 
