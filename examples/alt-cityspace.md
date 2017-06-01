@@ -110,7 +110,7 @@ Due to some tech and resourcing constraints, CitySpace is not configured for con
 
 ### Production
 
-- **URL:** [alpha.cityspace.austintexas.gov]()
+- **URL:** [alpha.cityspace.austintexas.gov](http://alpha.cityspace.austintexas.gov)
 - **Acquia:** [Prod](https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17643-090d2f38-2e13-4b3a-8e5d-c460d582df43)
 - **GitHub Branch:** `master`
 - **Deployment:** Whenever somone accepts & merges a Pull Request (or batch of PRs) into `master` they should pull the updated branch onto their local machine and then manually initiate a deploy.
@@ -140,7 +140,7 @@ $ drush @austin1.prod cr
 
 ### Test
 
-- **URL:** [test.cityspace.austintexas.gov]()
+- **URL:** [test.cityspace.austintexas.gov](http://test.cityspace.austintexas.gov)
 
 - **Acquia:** [Test](https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17645-090d2f38-2e13-4b3a-8e5d-c460d582df43)
 
@@ -166,7 +166,7 @@ The deployment process is similar to `Prod` but with a couple of exceptions.
 
 ### Local
 
-- **URL:** [http://localhost/]() 
+- **URL:** [http://localhost/](http://localhost/)
 
 - **GitHub Branch:** `mt-bonnell`
 
