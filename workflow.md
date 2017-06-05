@@ -179,24 +179,23 @@ A thoughtful and thorough `README` makes it easy for your peers to quickly under
    This will add `my-feature` to the GitHub remote so other developers can see your work. Keep in mind that throughout all this we have not touched the stable `master` branch, so we always have a clean and stable copy of the code that's live on `Production` that we can revert to at any time.
 
 
-Merging code with Pull Requests
+### Merging code with Pull Requests
 
 - Once your code and commit(s) are in the repository you can invite other developers to review it.
 - If you want to compare it against a specific branch then you can open a [Pull Request](https://help.github.com/articles/about-pull-requests/).
-- Once your code has been tested and reviewed you are ready to open a Pull Request for `my-feature` into `master`.
+- Once your code has been tested and reviewed you are ready to open a Pull Request for `my-feature` into `master`. Set `master` as the _base_ and `my-feature` as the _compare_ branch.
 - The PR is the final opportunity to check for code conflicts or to have a team member review the changes.
 - When the review is complete you can Accept & Merge the PR. This will add your new commits from `my-feature` into the history of `master`, and should trigger a CI deployment to your production server.
+- If you need to make changes, return to `my-feature` and continue your development workflow. Any new commits should be squashed into the relevant original commit. Follow the [steps for performing an interactive rebase](http://www.rakeroutes.com/blog/deliberate-git/#using-git-rebase--i) in the *Deliberate Git* guide.
 
 
-1. Commit cleanup
+### Deployment & CI<sup>2</sup>
 
-   1. If you need to make changes, return to `my-feature` and continue your development workflow. Any new commits should be squashed into the relevant original commit. Follow the [steps for performing an interactive rebase](http://www.rakeroutes.com/blog/deliberate-git/#using-git-rebase--i) in the *Deliberate Git* guide.
-
-2. Deployment & CI
-
-   1. `master` should auto-deploy to the production server
-   2. `dev` should auto-deploy to the testing server
+1. `master` should auto-deploy to the production server
+2. `dev` should auto-deploy to the testing server
 
 ---
 
 <sup>1</sup> _This is not an official list of supported editors, it's just the editors I've used and have seen teammates use in the past. We should probably have a discussion around city-wide editor licensing._
+
+<sup>2</sup> _This may vary by project and is just meant to serve as a baseline recommendation._
