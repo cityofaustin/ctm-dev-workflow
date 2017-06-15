@@ -26,15 +26,16 @@ server, please see: https://docs.acquia.com/acquia-cloud/ssh
 Usage may be monitored and audited.
 
 austin1@staging-16599:/mnt/gfs/home/austin1$ 
+```
+4. Exit the shell
 
-# Exit the shell
-
+```
 austin1@staging-16599:/mnt/gfs/home/austin1$ exit
 logout
 Connection to staging-16599.prod.hosting.acquia.com closed.Clone the Github repository
 ```
 
-4. Request a Drupal Admin account on the Acquia server and follow the invitation instructions.
+5. Request a Drupal Admin account on the Acquia server and follow the invitation instructions.
    *This step must be completed before you download the database and upload it to Dev Desktop*
 
 ### 2. Clone the repository
@@ -67,13 +68,20 @@ $ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
    $ cd docroot/themes/coa_intranet
    $ bundle install
    ```
-2. Download [the drush aliases file](https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing) from Google Drive and move it to the `~/.drush/` directory. You may need to request access to this file.
+2. Download and install Dev Desktop ("DD") from https://dev.acquia.com/downloads.
+
+   1. Set "Desktop sites folder" to wherever you save your local projects
+   2. After installation, deselect "Launch Acquia Dev Desktop" and click "Finish".
+   3. Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.
+
+3. Download [the drush aliases file](https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing) from Google Drive and move it to the `~/.drush/` directory. You may need to request access to this file.
 
    ```
    $ mv ~/PATH/TO/DOWNLOADED/austin1.aliases.drushrc.php ~/.drush/
    ```
 
-3. Download the Acquia Cloud database to your Desktop.
+
+4. Download the Acquia Cloud database to your Desktop.
 
    ```
    $ cd MY_PROJECT_DIRECTORY/
@@ -81,14 +89,6 @@ $ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
    ```
 
    *You can specify a different destination path - The important thing is to download it outside of your project directory so that it does not get added to the git repository.*
-
-
-4. Download and install Dev Desktop ("DD") from https://dev.acquia.com/downloads.
-
-   1. Set "Desktop sites folder" to wherever you save your local projects
-   2. After installation, deselect "Launch Acquia Dev Desktop" and click "Finish".
-   3. Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.
-
 
 5. Launch DevDesktop and select "Start with an existing Drupal site located on my computer".
 
