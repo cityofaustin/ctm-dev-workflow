@@ -1,168 +1,143 @@
-# Application Development Guidelines
+# The Development Workflow
 
-## Setting up your local environment
+The end goal is for the commit history in `master` to tell a logical and descriptive story about the code
 
-1. Install one of the CTM supported code editors<sup>1</sup>
-   - Atom
-   - Coda
-   - Dreamweaver
-   - Eclipse
-   - Netbeans
-   - Sublime
-   - TextMate
-2. Set your editor as the default Git editor, and tell Git to wait for you to to supply a commit title and body before proceeding with a Commit or a Rebase
-   Instructions: [Mac](https://help.github.com/articles/associating-text-editors-with-git/#platform-mac) | [Windows](https://help.github.com/articles/associating-text-editors-with-git/#platform-windows) | [Linux](https://help.github.com/articles/associating-text-editors-with-git/#platform-linux)
-3. Quit and re-launch your shell
+Before moving on, find 30 minutes to [watch Stephen Ball's _Deliberate Git_ talk](https://vimeo.com/72762735). This will help you understand how we can make our web development more efficient and sustainable by following this workflow.
 
-## Setting up your repository
+### Here's how you do it
 
-### Branching
+#### Always do your work in a feature branch
 
-Each repo should have at least 2 core branches and any number of additional feature branches
+Remember the 1 rule to, uh, _rule_ them all? Yeah, anything on `master` is deployable. So your work-in-progress should not be done on `master`. That's where feature branching comes in.
 
-- `master` - There's only one rule: **anything in the `master` branch is always deployable**. Work should never be done in this branch. Changes should be merged in via Pull Request. `master` deploys to `Production`.
-- `dev` - This is not meant to be a stable branch, but instead a way for developers to test their work in an environment that more closely matches `Production`. As a result, it might be regularly destroyed and re-cloned from `master`.
-- `test` - This is a pre-production environment with database permissions and access that match those on `Production`. This distinction from `dev` might not always apply to all feature branches. The important thing is that the environments are sufficiently documented in your `README`.
-- Feature branches - These are branches that are actively being worked on. They should contain descriptive names that inform anyone browsing the repo what work is being done. For example, `add-uswds` would be a better name than `matts-frontend` for a feature branch that adds the U.S. Web Design Standards to the project.
+1. Start with a clean `master` branch that's deployed on production.
 
-### README
+   ```
+   $ git checkout master
+   $ git pull origin master
+   ```
 
-A thoughtful and thorough `README` makes it easy for your peers to quickly understand how your application works and how to contribute to it. Start with [this template](README.md) and modify as appropriate for your project. This repo contains [a robust example](examples/alt-cityspace.md) from the CitySpace project for reference as you decide what to put into yours.
+2. Create your feature branch using a semantically-descriptive name with hyphens as separators
+   Good examples: `ci-integration` or `homepage-refactor`
+   Bad examples: `matt` or  `updates`
 
-## Doing work
+   ```
+   $ git checkout -b my-feature
+   Switched to a new branch 'my-feature'
+   ```
 
-#### Assumptions:
+#### Make incremental commits throughout your process
 
-1. You have already set up your GitHub account(s) and have _write_ access to the repo you want to work on
-2. You're using _Windows_ or _OS X_
-   (If you're running _Linux_ this workflow is still equally applicable, but some system configurations might require different steps or in some cases might not be achievable, but you already knew that because you're a Linux person :stuck_out_tongue:)
-3. You understand the basics of a command line interface and have a shell installed on your computer (likely _Terminal_ if you're on OS X or _CMD.exe_ if you're on Windows)
+As part of your flow it's important to create separate commits for logical groups of code. For example, let's say you're doing some frontend work on a homepage, and as part of that effort you decide to replace a static styles.css stylesheet with a SASS pipeline. In that case you have at least two related but logically distinct sets of changes: The SASS structure and associated dependences, and then the UI changes that have to be made in the CSS and HTML. Once you had built the SASS pipeline you would want to create a commit for that change, probably titled something like "Implement SASS". Next you would move on to your UI updates and roll those into a subsequent commit (which likely touches some of the same files), perhaps called "Update homepage widget styling". Remember - it is always easier to combine tiny commits into a single commit than it is to break a single commit into smaller, more logical commits.
 
+Here's what that commit process would look like. Notice how there are 3 changes highlighted in the status:
 
-#### Developing
+- A modified `homepage.html`
+- A modified `styles.css`
+- A previously unknown and untracked `sass/` directory
 
-1. Start with a clean `master` branch that's deployed on production and a `dev` branch cloned from that clean master branch.
+```
+$ git status
+On branch my-feature
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-2. Create your feature branch, making sure your base is the current `master` state
+	modified:   homepage.html
+	modified:   styles.css
 
-   1. Make sure master is up-to-date
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
 
-      ```
-      $ git checkout master
-      $ git pull
-      ```
+	sass/
 
-   2. Create your feature branch, using a semantically-descriptive name with hyphens as separators
-      Good examples: `ci-integration` `homepage-refactor`
-      Bad examples: `matt` `bug-fixes`
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
-      ```
-      $ git checkout -b my-feature
-      Switched to a new branch 'my-feature'
-      ```
+First, add your SASS change and confirm that those changes are staged for commit
 
-3. Do your work...
+```
+$ git add sass/
+$ git status
+On branch my-feature
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
 
-   -  Create separate commits for logical groups of code. For example, let's say you're doing some frontend work on a homepage, and as part of that effort you decide to replace a static styles.css stylesheet with a SASS pipeline. In that case you have at least two related but logically distinct sets of changes: The SASS structure and associated dependences, and then the UI changes that have to be made in the CSS and HTML. Once you had built the SASS pipeline you would want to create a commit for that change, probably titled something like "Implement SASS". Next you would move on to your UI updates and roll those into a subsequent commit (which likely touches some of the same files), perhaps called "Update homepage widget styling". Remember - it is always easier to combine tiny commits into a single commit than it is to break a single commit into smaller, more logical commits.
+	new file:   sass/_base.scss
+	new file:   sass/_custom.scss
+	new file:   sass/_uswds.scss
+	new file:   sass/styles.css
 
-      Here's what that commit process would look like
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-      ```
-      $ git status
-      On branch my-feature
-      Changes not staged for commit:
-        (use "git add <file>..." to update what will be committed)
-        (use "git checkout -- <file>..." to discard changes in working directory)
+	modified:   homepage.html
+	modified:   styles.css
+```
+What happened here is that you added the `sass/` directory to Git's version control system, but you have not done anything to the two files that were already being tracked.
 
-      	modified:   homepage.html
-      	modified:   styles.css
+Now you're ready to create the Commit that introduces `sass/` to version control.
 
-      Untracked files:
-        (use "git add <file>..." to include in what will be committed)
+```
+$ git commit
+```
 
-      	sass/
+If you've configured your default Git editor appropriately then the editor should open to a commit file. Write your commit title and message, then save and close the file to apply the commit.
 
-      no changes added to commit (use "git add" and/or "git commit -a")
-      ```
+_Remember to insert an empty line between your title and commit body!_
 
-      First, add your SASS change and confirm that those changes are staged for commit
+```
+Add SASS pipeline to replace static CSS file
 
-      ```
-      $ git add sass/
-      $ git status
-      On branch my-feature
-      Changes to be committed:
-        (use "git reset HEAD <file>..." to unstage)
+In order to leverage modern CSS techniques such as global variable assignment and precompiling I decided to introduce a SASS pipeline to my-feature. This came as a result of frustrations attempting to make changes to global elements and having to search for each place in the CSS where they were previously declared. For now I'm setting global variables for "padding-top", "line-height", and "light-gray" but these could be supplemented in the future.
 
-      	new file:   sass/_base.scss
-      	new file:   sass/_custom.scss
-      	new file:   sass/_uswds.scss
-      	new file:   sass/styles.css
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch my-feature
+# Changes to be committed:
+#	new file:   sass/_base.scss
+#	new file:   sass/_custom.scss
+#	new file:   sass/_uswds.scss
+#	new file:   sass/styles.css
+#
+# Changes not staged for commit:
+#	modified:   homepage.html
+#	modified:   styles.css
+#
+```
 
-      Changes not staged for commit:
-        (use "git add <file>..." to update what will be committed)
-        (use "git checkout -- <file>..." to discard changes in working directory)
+Once you save and close your commit message you should be returned to your shell, which should pick up where you left off with `$ git commit`
 
-      	modified:   homepage.html
-      	modified:   styles.css
-      ```
-      Now you're ready to create your Commit for the SASS changes
+```
+$ git commit
+[my-feature dcd5bca] Add SASS pipeline to replace static CSS file
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 sass/_base.scss
+ create mode 100644 sass/_custom.scss
+ create mode 100644 sass/_uswds.scss
+ create mode 100644 sass/styles.css
+```
+And voilà, you've created a meaningful and deliberate commit for your SASS pipeline work. Now you can move on to the rest of the changes in a second commit
 
-      ```
-      $ git commit
-      ```
+```
+$ git status
+On branch my-feature
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-      If you've configured your default Git editor appropriately then the editor should open to a commit file. Write your commit title and message, then save and close the file to apply the commit. Remember to insert an empty line between your title and commit body.
+	modified:   homepage.html
+	modified:   styles.css
 
-      ```
-      Add SASS pipeline to replace static CSS file
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
-      In order to leverage modern CSS techniques such as global variable assignment and precompiling I decided to introduce a SASS pipeline to my-feature. This came as a result of frustrations attempting to make changes to global elements and having to search for each place in the CSS where they were previously declared. For now I'm setting global variables for "padding-top", "line-height", and "light-gray" but these could be supplemented in the future.
+You can either cherry-pick individual files to stage for commit, as we did with the SASS work, or if all the remaining changes belong in the same commit simply run `$ git add .` to stage all modifications. Then run `$ git commit` and follow the same process as above.
 
-      # Please enter the commit message for your changes. Lines starting
-      # with '#' will be ignored, and an empty message aborts the commit.
-      # On branch my-feature
-      # Changes to be committed:
-      #	new file:   sass/_base.scss
-      #	new file:   sass/_custom.scss
-      #	new file:   sass/_uswds.scss
-      #	new file:   sass/styles.css
-      #
-      # Changes not staged for commit:
-      #	modified:   homepage.html
-      #	modified:   styles.css
-      #
-      ```
+1. Switch your mind from "dev mode" to "writing mode"
+   Once all your work is committed it's time to switch to push `my-feature` to the remote, which is probably called `origin`.
 
-      Once you save and close your commit message you should be returned to your shell, which should pick up where you left off with `$ git commit`
-
-      ```
-      $ git commit
-      [my-feature dcd5bca] Add SASS pipeline to replace static CSS file
-       4 files changed, 0 insertions(+), 0 deletions(-)
-       create mode 100644 sass/_base.scss
-       create mode 100644 sass/_custom.scss
-       create mode 100644 sass/_uswds.scss
-       create mode 100644 sass/styles.css
-      ```
-      And voilà, you've created a meaningful and deliberate commit for your SASS pipeline work. Now you can move on to the rest of the changes in a second commit
-
-      ```
-      $ git status
-      On branch my-feature
-      Changes not staged for commit:
-        (use "git add <file>..." to update what will be committed)
-        (use "git checkout -- <file>..." to discard changes in working directory)
-
-      	modified:   homepage.html
-      	modified:   styles.css
-
-      no changes added to commit (use "git add" and/or "git commit -a")
-      ```
-
-      You can either cherry-pick individual files to stage for commit, as we did with the SASS work, or if all the remaining changes belong in the same commit simply run `$ git add .` to stage all modifications. Then run `$ git commit` and follow the same process as above.
-
-4. Once all your work is committed it's time to push `my-feature` to the remote, which is probably called `origin`.
    First, double-check that you've successfully committed all of your changes.
 
    ```
