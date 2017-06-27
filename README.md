@@ -12,7 +12,7 @@ These are things that anyone doing software or web development at the CoA should
 
 If you already know your `$ cd ..`s from your `$ sudo rm -rf`s then you can move ahead.
 
-If you are not familiar with the command line, or if you want a refresher, then sign up for a free codecademy account and take their [Learn the Command Line course](https://www.codecademy.com/learn/learn-the-command-line).
+If you are not familiar with the command line, or if you want a refresher, then [sign up for a free codecademy account](https://www.codecademy.com/register) and take their [Learn the Command Line course](https://www.codecademy.com/learn/learn-the-command-line).
 
 Mac users can use the built-in Terminal application that comes with OS X.
 
