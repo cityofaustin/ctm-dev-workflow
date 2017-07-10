@@ -28,7 +28,60 @@ Remember the 1 rule to, uh, _rule_ them all? Yeah, anything on `master` is deplo
 
 #### Make incremental commits throughout your process
 
-As part of your flow it's important to create separate commits for logical groups of code. For example, let's say you're doing some frontend work on a homepage, and as part of that effort you decide to replace a static styles.css stylesheet with a SASS pipeline. In that case you have at least two related but logically distinct sets of changes: The SASS structure and associated dependences, and then the UI changes that have to be made in the CSS and HTML. Once you had built the SASS pipeline you would want to create a commit for that change, probably titled something like "Implement SASS". Next you would move on to your UI updates and roll those into a subsequent commit (which likely touches some of the same files), perhaps called "Update homepage widget styling". Remember - it is always easier to combine tiny commits into a single commit than it is to break a single commit into smaller, more logical commits.
+As part of your flow it's important to create separate commits for logical groups of code. For example, let's say you're doing some frontend work on a homepage, and as part of that effort you decide to replace a static styles.css stylesheet with a SASS pipeline. In that case you have at least two related but logically distinct sets of changes: The SASS structure and associated dependences, and then the UI changes that have to be made in the CSS and HTML. Once you had built the SASS pipeline you would want to create a commit for that change, probably titled something like "Implement SASS". Next you would move on to your UI updates and roll those into a subsequent commit (which likely touches some of the same files), perhaps called "Update homepage widget styling".
+
+Along the way it is recommended that you incrementally commit your work-in-progress. For this you can use the `-m` flag in your commit to write a quick commit title directly from terminal. In the example above, when you created the `sass/` directory you might have run:  
+
+```
+$ git add sass/
+$ git commit -m "wip create initial sass directory"
+```
+
+It's okay that your SASS work was incomplete up to that point. Again, the goal is to make many small commits that can later be combined into more cohesive groupings. Remember - it is always easier to combine tiny commits into a single commit than it is to break a single commit into smaller, more logical commits.
+
+Then, once you have changes on `homepage.html`, you could follow the same process to isolate that work:  
+
+```
+$ git add homepage.html
+$ git commit -m "wip initial homepage UI updates"
+```
+
+Even if you had already made changes to `homepage.html` and `sass/`, you can still _stage_ those changes and commit them separately by using `$ git add [thing(s)-you-want-to-stage]` instead of `$ git add .`, which assumes you want to include all of your local changes into a single commit. You can also add multiple individual things to a single commit. Let's say that after the pipeline was created you wanted to add a separate SASS file for footer styling. This would consist of at least 2 file changes - the `_footer.scss` styles and the `@import 'footer'` declaration in `styles.css`. Since those changes relate to a single logical item of work it makes sense for them to be in the same commit. To stage them both and commit you can do:  
+
+```
+$ git add _footer.scss
+$ git add styles.css
+```
+
+OR you can add them both in a single declaration  
+
+```
+$ git add _footer.scss styles.css
+```
+
+Of course if those are your only local changes you could still do `$ git add .` but it's helpful to know all the different ways to go from local file changes to an update in the Git changelog.
+
+## Push your commits to the remote
+
+Even if you're not done working yet it's a good idea to push your changes to the GitHub remote. This allows you to get feedback on your work (if desired) and provides a safe backup of your code in case your local branch gets unwieldy.
+
+```
+$ git push origin my-feature
+```
+
+## Switch from a "coding" to a "writing" mindset
+
+Once your code changes are complete it's time to turn the messy commit history into clear stories about the changes you made.
+
+Follow the instructions in [rebase.md](rebase.md) to rewrite your commit history.
+
+
+
+
+
+---
+
+**Old stuff (delete once sure it's not needed):**
 
 Here's what that commit process would look like. Notice how there are 3 changes highlighted in the status:
 
