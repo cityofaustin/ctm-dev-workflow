@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Configuring your local environment</title>
+  <meta property="og:title" content=" | Configuring your local environment" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/local-environment.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="configuring-your-local-environment">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="configuring-your-local-environment">Configuring your local environment</h1>
+
+<p>Specific projects might have their own sets of required configurations, so the focus for this guide is on interoperability between remote GitHub repositories, your local Git configuration, and your code editor.</p>
+
+<p>These instructions are focused on setting up a Mac OS X development environment.</p>
+
+<p>If you help configuring a Windows machine please <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeJtZzODlmgQEAaupbCoaekyXoCN32lk2ft0JWwLG5sewxhA/viewform?usp=sf_link">sign up for a developer training session</a>.</p>
+
+<h2 id="download-and-install-atom">Download and install Atom</h2>
+
+<p>Atom is the lowest-common-denominator editor used by CoA web developers. It’s lightweight, free, and is easy to set as your default Git editor. It’s okay if you use a different editor for your daily work. This guide focuses on using Atom simply as your default Git editor. You are welcome to configure any editor you wish, but troubleshooting support will only be provided for Atom.<br />
+Download and install Atom from <a href="https://atom.io">atom.io</a></p>
+
+<h2 id="download-and-install-git">Download and install Git</h2>
+
+<p>You’ll need Git installed on your system in order to do pretty much anything related to this workflow. This is not the GUI client, but instead a system-level installation that allows you to incorporate independent tools like Atom and Terminal to your workflow.<br />
+Download at https://git-scm.com/downloads</p>
+
+<h2 id="set-atom-as-your-default-git-editor">Set Atom as your default Git editor</h2>
+
+<p>In order to adhere to the development process it is necessary to set a default Git editor. This makes it easy to compose thoughtful and exhaustive commit messages, which is a critical part of a sustainable and scalable development culture.</p>
+
+<p>Again, you are welcome to configure any editor you wish, but the instructions below will focus on using Atom on your Windows or Mac machine.</p>
+
+<p>Launch Terminal.app on your Mac and enter the following command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git config --global core.editor "atom --wait"
+</code></pre>
+</div>
+
+<h2 id="store-your-github-credentials-so-you-dont-have-to-provide-them-for-every-request">Store your GitHub credentials so you don’t have to provide them for every request</h2>
+
+<p>HTTPS is the recommended authentication method for your machine’s communication with GitHub. To avoid having to re-enter your credentials for every request you can cache your GitHub credentials in the <em>credential helper</em>. <a href="https://help.github.com/articles/caching-your-github-password-in-git/#platform-mac">See the instructions on GitHub.com</a>.</p>
+
+<p>There is a sample repository you can use to trigger the initial authentication request. Here’s how to use it:</p>
+
+<ol>
+  <li><strong>For GitHub.austintexas.gov</strong>:<br />
+Clone the <code class="highlighter-rouge">authentication-testing</code> repository to your local projects directory<br />
+<code class="highlighter-rouge">$ git clone https://github.austintexas.gov/ctm-sandbox/authentication-testing.git</code><br />
+<strong>For GitHub.com:</strong><br />
+<code class="highlighter-rouge">$ git clone https://github.com/cityofaustin/authentication-testing.git</code></li>
+  <li>Enter your email/username and password when prompted</li>
+  <li>TODO Add next steps by testing my own version</li>
+</ol>
+
+<p>Make sure that you clone and initialize your repositories using the HTTPS URL rather than SSH.<br />
+Example HTTPS URL: <code class="highlighter-rouge">https://github.com/cityofaustin/ctm-dev-workflow.git</code><br />
+Example SSH URL: <code class="highlighter-rouge">git@github.com:cityofaustin/ctm-dev-workflow.git</code></p>
+
+<p>If you prefer to use SSH you are welcome to do that instead of or in addition to HTTPS.</p>
+
+<h2 id="confirm-that-you-did-it-all-correctly">Confirm that you did it all correctly</h2>
+
+<ol>
+  <li>
+    <p>In your shell, <code class="highlighter-rouge">cd</code> to the <code class="highlighter-rouge">ctm-dev-workflow</code> project directory you cloned when storing your credentials</p>
+  </li>
+  <li>
+    <p>Add a new file called <code class="highlighter-rouge">test.md</code></p>
+  </li>
+  <li>
+    <p>Stage your change for commit using <code class="highlighter-rouge">$ git add .</code></p>
+  </li>
+  <li>
+    <p>Commit your change using <code class="highlighter-rouge">$ git commit</code></p>
+  </li>
+  <li>
+    <p>Atom should open up a file called <code class="highlighter-rouge">COMMIT_EDITMSG</code></p>
+  </li>
+  <li>
+    <p>Write a commit title in Line 1, such as “Test environment setup”</p>
+  </li>
+  <li>
+    <p>Write a commit body in Line 3 such as “This commit is for testing that all of my local setup was configured correctly”</p>
+  </li>
+  <li>
+    <p>Save the file and close the entire Atom window</p>
+  </li>
+  <li>
+    <p>You should be re-directed back to your shell window, which should display a note such as</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>1 file changed, 1 insertion(+), 0 deletion(-)
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Run <code class="highlighter-rouge">$ git log</code> and confirm that the commit title and message you entered show up at the top of your shell window</p>
+  </li>
+  <li>
+    <p>Run <code class="highlighter-rouge">$ git push origin master</code><br />
+If you see an error message that you do not have permissions then congratulations, everything’s correct!<br />
+If you are prompted for your credentials again then something went wrong with your credential keychain.</p>
+  </li>
+</ol>
+
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/local-environment.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

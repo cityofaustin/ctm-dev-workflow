@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Using rebase to ensure a clean commit history</title>
+  <meta property="og:title" content=" | Using rebase to ensure a clean commit history" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/rebase.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="using-rebase-to-ensure-a-clean-commit-history">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="using-rebase-to-ensure-a-clean-commit-history">Using rebase to ensure a clean commit history</h1>
+
+<p>Git’s <a href="https://git-scm.com/docs/git-rebase"><em>rebase</em></a> feature is a powerful and advanced tool that can help you convert a messy commit history into useful notes for future developers. Sometimes that future developer might even be you!</p>
+
+<p>More precisely, the <em>interactive</em> rebase feature can be used to re-write history to make it appear like you never made a mistake and wrote all of your perfect code in one try. Yes, it is sorcery. No, you do not need a Hogwarts degree perform it.</p>
+
+<h2 id="starting-at-a-messy-commit-history">Starting at a messy commit history</h2>
+
+<p>So you’ve done your work in your feature branch and, hopefully, have been generating frequent, isolated commits for your work in progress. When you run <code class="highlighter-rouge">$ git log</code> your history may look something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>commit 28f0fed0fbefab20436e9d0927d0e07241b1db05
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jun 28 13:25:05 2017 -0500
+
+    wip workflow
+
+commit 88c7675ef37489056ff0550cd3216d6c7599a99f
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jun 28 13:24:51 2017 -0500
+
+    wip setup
+
+commit cdf3bf1fde1c3c138eb73a020c375b70c7a22b65
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jun 28 13:00:27 2017 -0500
+
+    wip local setup
+
+commit 70adbee56a3b0a8e766e0eba120dc390813895ee
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jun 28 13:00:03 2017 -0500
+
+    wip unified guides
+
+commit 69bcb81dd6e1749560a51775e66a7befd6c6fd5e
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jun 28 08:35:43 2017 -0500
+
+    wip aggregate all guides outside of workflow
+</code></pre>
+</div>
+
+<h2 id="initiating-the-interactive-rebase">Initiating the interactive rebase</h2>
+
+<p>So you have a bunch of “wip” (work-in-progress) commits that you are now ready to do 2 things with:</p>
+
+<ol>
+  <li>Combine them into logical clusters of commits. In this example, all the commits that changed <code class="highlighter-rouge">workflow.md</code> should be grouped into one single commit that tells the story of one cohesive re-write of the file.</li>
+  <li>Provide thoughtful commit titles and messages to help future developers who might have questions about the changes and why they were made.</li>
+</ol>
+
+<p>First, you’ll probably need to get out of your log history by typing <code class="highlighter-rouge">q</code> in front of the <code class="highlighter-rouge">:</code> at the bottom of your shell. It will look something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>commit 610e2a16ffca9665aabe9f58055f3b2bc64a4895
+Author: Matt Langan &lt;matt.langan@austintexas.gov&gt;
+Date:   Wed Jul 5 10:25:58 2017 -0500
+
+    wip workflow
+:
+</code></pre>
+</div>
+
+<p>Now that you’re back in your command prompt you need to tell Git 2 things:</p>
+
+<ol>
+  <li>You want to perform an <em>interactive rebase</em></li>
+  <li>How far back in the history you want to go</li>
+</ol>
+
+<p>The first step is handled by a simple Git command <code class="highlighter-rouge">$ git rebase -i</code>, and the second part is handled by appending additional context to that command. There are 2 ways to perform that second step.</p>
+
+<p>If you know exactly which commit you want to go back to you can copy its hash and append it to the rebase command, so your whole command would look like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase -i 610e2a16ffca9665aabe9f58055f3b2bc64a4895
+</code></pre>
+</div>
+
+<p>That will tell Git that you’re interested in rewriting the history starting at your most recent commit, going all the way back to the commit for the hash you provided.</p>
+
+<p>The other option is simply tell Git that you want to go a set number of commits back from your latest commit. Let’s say you only wanted to rewrite your most recent commit. In that case you would run:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase -i HEAD~1
+</code></pre>
+</div>
+<p>Want to rewrite your last 7 commits?</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase -i HEAD~7
+</code></pre>
+</div>
+
+<h2 id="performing-the-rebase">Performing the rebase</h2>
+
+<p>If your machine is properly configured then your default Git editor should open up a window that consists of your commit log at the top and rebase instructions at the bottom.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+pick 13895ee wip unified guides
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+pick 1b1db05 wip workflow
+
+# Rebase 1b1db05..6c6fd5e onto e77065b (5 commands)
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+# d, drop = remove commit
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+</code></pre>
+</div>
+
+<p>Note that the display order is the opposite from what you see when you run <code class="highlighter-rouge">$ git log</code>. The most recent commit is at the bottom, and the oldest is at the top.</p>
+
+<p>It’s critical that you treat this file with caution, as the work done here will be permanent. For example, if you delete one of the commit lines that commit will be lost. For this reason it is recommended that your local copy be pushed to the remote before performing the rebase. That way, if you make a mistake you can’t recover from during the rebase, you can always delete your local feature branch, re-pull it from the remote, and start over.</p>
+
+<h3 id="rebase-commands">Rebase commands</h3>
+
+<p>You’ll notice the list of commands available, starting with <code class="highlighter-rouge">pick</code> and ending with <code class="highlighter-rouge">drop</code>. By default, all of the commits are set to <code class="highlighter-rouge">pick</code> which, as you can see, simply tells Git to use the commit as-is. This retains the code change, the title, the commit body, and its order in the log. If you leave all actions as <code class="highlighter-rouge">pick</code> and close this window then the rebase will run and the history will not be changed.</p>
+
+<p>Once you’ve selected your commands you need to save the file and close the window. If you’re using Atom you need to close the the entire Atom application window. Once you’ve done that you should be redirected to your shell, where you will see messages from Git about its attempt to run your commands.</p>
+
+<p>If the rebase fails or hits a conflict then you will see an error message. You can always run <code class="highlighter-rouge">$ git rebase —abort</code> to cancel the rebase and return to the commit history you had before attempting the rebase.</p>
+
+<h4 id="reword-r">Reword (r)</h4>
+
+<p>The simplest change to make in a rebase is the <code class="highlighter-rouge">reword</code>. This lets you edit a commit’s title and body, but makes no other changes to the history or code. To reword a commit, replace <code class="highlighter-rouge">pick</code> with <code class="highlighter-rouge">r</code> beside the commit hash.</p>
+
+<p>When Git runs your <code class="highlighter-rouge">reword</code> command it will once again launch your default editor, this time with a file open for just that commit. Supply your commit title and message, then save and close the file to apply the commit. <em>Remember to insert an empty line between your title and commit body!</em></p>
+
+<p>Refer to <a href="/writing-a-commit.html">writing-a-commit.md</a> for guidelines on how to author your title and body.</p>
+
+<p>As with the rebase log, if you’re using Atom then both the file and application windows must be closed in order for Git to continue performing the rebase.</p>
+
+<h4 id="fixup-f">Fixup (f)</h4>
+
+<p>This is the command to use to combine multiple sets of changes into a single commit, while only retaining the commit title and message of the parent (top) commit. For example, if we applied the following changes to the rebase file…</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+f 13895ee wip unified guides
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+pick 1b1db05 wip workflow
+</code></pre>
+</div>
+
+<p>… then the <em>code</em> changes in <code class="highlighter-rouge">13895ee</code> would be combined into the commit above it (<code class="highlighter-rouge">6c6fd5e</code>), and the commit title and body from <code class="highlighter-rouge">13895ee</code> would be destroyed. If that rebase were to be completed successfully then the next time you brought up the rebase window you would see</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+pick 1b1db05 wip workflow
+</code></pre>
+</div>
+
+<h4 id="drop-d">Drop (d)</h4>
+
+<p>This will remove the commit and your history will appear as though it was never created in the first place.</p>
+
+<h4 id="combining-commits-that-werent-made-in-succession">Combining commits that weren’t made in succession</h4>
+
+<p>You can move lines around to change the order in which they will be reflected in the log. This is also useful when combined with a <em>fixup</em>. Let’s take another look at our messy history and work through a reorder and fixup strategy. In this case, let’s say that the we wanted to combine our most recent commit <code class="highlighter-rouge">1b1db05</code> with the first commit in our rebase history <code class="highlighter-rouge">6c6fd5e</code>.</p>
+
+<p>Our original commit history looks like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+pick 13895ee wip unified guides
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+pick 1b1db05 wip workflow
+</code></pre>
+</div>
+
+<p>First, we would move <code class="highlighter-rouge">pick 1b1db05 wip workflow</code> from line 5 to line 2, resulting in:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+pick 1b1db05 wip workflow
+pick 13895ee wip unified guides
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+</code></pre>
+</div>
+
+<p>Next, we apply the <code class="highlighter-rouge">fixup</code> to the more recent commit in order to combine it with its intended parent commit:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pick 6c6fd5e wip aggregate all guides outside of workflow
+f 1b1db05 wip workflow
+pick 13895ee wip unified guides
+pick 7a22b65 wip local setup
+pick 599a99f wip setup
+</code></pre>
+</div>
+
+<p>Now when we save and close the commit file Git will apply the code changes from <code class="highlighter-rouge">1b1db05</code> to <code class="highlighter-rouge">6c6fd5e</code>.</p>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/rebase.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Jenkins CI</title>
+  <meta property="og:title" content=" | Jenkins CI" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/services/jenkins.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="jenkins-ci">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/" class="usa-current">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="jenkins-ci">Jenkins CI</h1>
+
+<p>http://jenkins.io</p>
+
+<p>Jenkins is a tool that supports continuous integration between a GitHub repository and deployment environment(s).</p>
+
+<hr />
+
+<h2 id="audience">Audience</h2>
+
+<p>Application developers who want to automate deployment from their GitHub-based projects</p>
+
+<hr />
+
+<h2 id="getting-started">Getting started</h2>
+
+<ol>
+  <li>Log into jenkins. http://coacfbuild.austintexas.gov/</li>
+  <li>Create new jenkins job using either <code class="highlighter-rouge">inside-template</code> or <code class="highlighter-rouge">external-template</code>.</li>
+  <li>Next, goto http://coacfiprod.austintexas.gov/jenkins_build/ to create the build.xml file. Once finished copy code and paste into a file called build.xml that is at the root of your application/directory</li>
+  <li>Commit code to repo under either ctm-ads-cfdevs or coldfusion-outside organization at github.austintexas.gov</li>
+  <li>In current repo go to settings –&gt; Collaborators &amp; Teams. Under collaborators add the user <code class="highlighter-rouge">capdeploy</code>. Make sure capdeploy has write permissions</li>
+  <li>Next go to settings –&gt; Hooks &amp; services.
+    <ul>
+      <li>Under webhooks add <code class="highlighter-rouge">http://coacfbuild.austintexas.gov/github-webhook/</code> to payload url field and save settings.</li>
+      <li>Under services add the <code class="highlighter-rouge">Jenkins (Git Plugin)</code>. Add this url <code class="highlighter-rouge">http://coacfbuild.austintexas.gov/</code> to Jenkins url field. Save service.</li>
+    </ul>
+  </li>
+  <li>Add more code to your repo. When code is committed to repo’s master branch, it should fire off job to move code from github.austintexas.gov to http://coacfdev.austintexas.gov/<folder-name></folder-name></li>
+</ol>
+
+<hr />
+
+<h2 id="administration">Administration</h2>
+
+<hr />
+
+<h2 id="billing">Billing</h2>
+
+<p>Jenkins is a free, open-source tool that does not have any associated costs.</p>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/services/jenkins.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

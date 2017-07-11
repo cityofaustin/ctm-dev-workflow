@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | CitySpace</title>
+  <meta property="og:title" content=" | CitySpace" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/examples/alt-cityspace.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="cityspace">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="cityspace">CitySpace</h1>
+
+<p>http://alpha.cityspace.austintexas.gov</p>
+
+<p>CitySpace is the City of Austin employee intranet. It uses the Drupal 8 CMS and is deployed on Acquia Cloud using a Lightning distribution.</p>
+
+<h2 id="quick-start">Quick Start</h2>
+
+<h3 id="1-set-up-your-acquia-cloud-account">1. Set up your Acquia Cloud account</h3>
+
+<ol>
+  <li>
+    <p>Request an invitation to the CitySpace project on Acquia Cloud</p>
+  </li>
+  <li>
+    <p>Copy your SSH public key and add it to your Acquia Cloud account
+<code class="highlighter-rouge">$ pbcopy &lt; ~/.ssh/id_rsa.pub</code></p>
+  </li>
+  <li>
+    <p>Confirm the SSH key is configured (you may have to wait several minutes for your key to propagate)</p>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh austin1.test@staging-16599.prod.hosting.acquia.com
+
+Your Hardware Enablement Stack (HWE) is supported until April 2017.
+
+Welcome to Acquia Cloud. For information about shell access on this
+server, please see: https://docs.acquia.com/acquia-cloud/ssh
+
+Usage may be monitored and audited.
+
+austin1@staging-16599:/mnt/gfs/home/austin1$ 
+
+# Exit the shell
+
+austin1@staging-16599:/mnt/gfs/home/austin1$ exit
+logout
+Connection to staging-16599.prod.hosting.acquia.com closed.Clone the Github repository
+</code></pre>
+</div>
+
+<ol>
+  <li>Request a Drupal Admin account on the Acquia server and follow the invitation instructions.
+<em>This step must be completed before you download the database and upload it to Dev Desktop</em></li>
+</ol>
+
+<h3 id="2-clone-the-repository">2. Clone the repository</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git clone git@github.com:cityofaustin/cityspace.git
+</code></pre>
+</div>
+
+<h3 id="3-add-acquia-as-a-remote">3. Add Acquia as a remote</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd cityspace/
+$ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
+</code></pre>
+</div>
+
+<h3 id="4-install-and-configure-local-environment">4. Install and configure local environment</h3>
+
+<ol>
+  <li>
+    <p>Install dependencies
+We require several gems for CSS management. Use bundler to install them.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code># If you don't have bundler yet, install it
+$ gem install bundler
+
+# Once bundler is installed:
+$ cd docroot/themes/coa_intranet
+$ bundle install
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Download and install Dev Desktop (“DD”) from https://dev.acquia.com/downloads.</p>
+
+    <ol>
+      <li>Set “Desktop sites folder” to wherever you save your local projects</li>
+      <li>After installation, deselect “Launch Acquia Dev Desktop” and click “Finish”.</li>
+      <li>Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.</li>
+    </ol>
+  </li>
+  <li>
+    <p>Download <a href="https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing">the drush aliases file</a> from Google Drive and move it to the <code class="highlighter-rouge">~/.drush/</code> directory.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ mv ~/PATH/TO/DOWNLOADED/austin1.aliases.drushrc.php ~/.drush/
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Download the Acquia Cloud database to your Desktop.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ cd MY_PROJECT_DIRECTORY/
+$ drush @austin1.prod sql-dump &gt; ~/Desktop/local.sql
+</code></pre>
+    </div>
+
+    <p><em>You can specify a different destination path - The important thing is to download it outside of your project directory so that it does not get added to the git repository.</em></p>
+  </li>
+  <li>
+    <p>Launch DevDesktop and select “Start with an existing Drupal site located on my computer”.</p>
+
+    <ol>
+      <li>Set the “Local codebase folder” to the  <code class="highlighter-rouge">docroot/</code> directory in the CitySpace project.</li>
+      <li>Set the “Local site name” to “austin1”.</li>
+      <li>Under the database dropdown select “Start with MySQL database dump file” and upload the <code class="highlighter-rouge">local.sql</code> file you downloaded earlier.</li>
+    </ol>
+  </li>
+  <li>
+    <p>Ensure Dev Desktop is running (green lights next to “Apache” and “MySQL”) and click on the “Local site” link to ensure your local server can serve the homepage.</p>
+  </li>
+  <li>
+    <p>Copy <code class="highlighter-rouge">docroot/sites/cofa.settings.local.php</code> to <code class="highlighter-rouge">docroot/sites/settings.local.php</code></p>
+  </li>
+  <li>
+    <p>Sign In using the same credentials you established for your Drupal Admin account.</p>
+  </li>
+</ol>
+
+<h2 id="environments">Environments</h2>
+
+<p>Due to some tech and resourcing constraints, CitySpace is not configured for continuous integration. Supporing CI would require an additional layer of Drupal + Acquia configuration that we decided was not worth it during early development stages. In the future, however, this might be re-visited with our Acquia Technical Account Manager.</p>
+
+<h3 id="production">Production</h3>
+
+<ul>
+  <li><strong>URL:</strong> alpha.cityspace.austintexas.gov</li>
+  <li><strong>Acquia:</strong> <a href="https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17643-090d2f38-2e13-4b3a-8e5d-c460d582df43">Prod</a></li>
+  <li><strong>GitHub:</strong> <code class="highlighter-rouge">master</code></li>
+  <li><strong>Deployment:</strong> Whenever somone accepts &amp; merges a Pull Request (or batch of PRs) into <code class="highlighter-rouge">master</code> they should pull the updated branch onto their local machine and then manually initiate a deploy.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git checkout master
+$ git pull
+$ git push acquia master
+
+# Run any drush scripts as necessary:
+# (Must be in docroot/)
+$ cd docroot/
+
+# Apply updates to config database from yml files
+$ drush @austin1.prod config-import active
+
+# Apply any pending database and entity schema updates
+$ drush @austin1.prod updb --entity-updates
+
+# Clear cache
+$ drush @austin1.prod cr
+</code></pre>
+</div>
+
+<h3 id="test">Test</h3>
+
+<ul>
+  <li>
+    <p><strong>URL:</strong> test.cityspace.austintexas.gov</p>
+  </li>
+  <li>
+    <p><strong>Acquia:</strong> <a href="https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43/environments/17645-090d2f38-2e13-4b3a-8e5d-c460d582df43">Test</a></p>
+  </li>
+  <li>
+    <p><strong>GitHub:</strong> <code class="highlighter-rouge">test</code></p>
+  </li>
+  <li>
+    <p><strong>Description:</strong> This is not meant to be a stable branch, but instead a way for developers to test their work in an environment that more closely matches <code class="highlighter-rouge">Prod</code>. As a result, it will be regularly destroyed and re-cloned from <code class="highlighter-rouge">master</code>.</p>
+
+    <p>Before pushing to <code class="highlighter-rouge">Test</code> please confirm with the <code class="highlighter-rouge">#cityspace-dev</code> Slack channel that nobody else is actively using it to test their own feature branch(es).</p>
+  </li>
+</ul>
+
+<p>The deployment process is similar to <code class="highlighter-rouge">Prod</code> but with a couple of exceptions.</p>
+
+<ul>
+  <li>Use <code class="highlighter-rouge">austin1.test</code> instead of <code class="highlighter-rouge">austin1.prod</code> for your Drush command</li>
+  <li>Push to <code class="highlighter-rouge">acquia test</code> rather than <code class="highlighter-rouge">acquia prod</code></li>
+  <li>Instead of PRing into <code class="highlighter-rouge">test</code> you might choose from 2 alternatives:
+    <ul>
+      <li>Rebase <code class="highlighter-rouge">my-feature</code> into <code class="highlighter-rouge">test</code> locally and deploy from test</li>
+      <li>Push my-feature <em>as</em> test
+<code class="highlighter-rouge">$ git push acquia my-feature:test</code></li>
+    </ul>
+  </li>
+  <li>You might need to do a force push if whatever was previously on <code class="highlighter-rouge">Test</code> is out-of-sync with the history in your feature branch
+<code class="highlighter-rouge">$ git push acquia test —force</code>
+^ note that <code class="highlighter-rouge">force</code> is preceded by two dashes <code class="highlighter-rouge">-</code> <code class="highlighter-rouge">-</code>, which may appear in this doc as a single dash depending on what you’re using to view this markdown file</li>
+</ul>
+
+<h3 id="local">Local</h3>
+
+<ul>
+  <li>
+    <p><strong>URL:</strong> <a href="">http://localhost/</a></p>
+  </li>
+  <li>
+    <p><strong>GitHub:</strong> <code class="highlighter-rouge">mt-bonnell</code></p>
+  </li>
+  <li>
+    <p><strong>CSS workflow:</strong> Our theme is based on the <a href="https://github.com/18F/web-design-standards">U.S. Web Design Standards</a>. The USWDS is implemented in <a href="http://sass-lang.com/guide">Sass</a> and uses the <a href="http://bourbon.io/">Bourbon</a> and <a href="http://neat.bourbon.io/">Neat</a> libraries for mixins and grid, respectively.</p>
+
+    <p>The various style specifications in <code class="highlighter-rouge">/docroot/themes/coa_intranet/assets/_scss</code> are aggregated by <code class="highlighter-rouge">styles.scss</code> and then compiled by <a href="http://compass-style.org">Compass</a> into a single, minified stylesheet at <code class="highlighter-rouge">/docroot/themes/coa_intranet/assets/css/styles.css</code>. This file, as defined in <a href="/docroot/themes/coa_intranet/coa_intranet.libraries.yml">coa_intranet.libraries.yml</a>, gets served to the browser.</p>
+
+    <p>In order to observe CSS changes in realtime you need to have Compass running in the background.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ cd docroot/themes/coa_intranet
+
+# Tell Compass to listen for changes to the Sass directory (specified in config.rb)
+$ compass watch
+&gt;&gt;&gt; Compass is watching for changes. Press Ctrl-C to Stop.
+
+# Edit a file in the _scss/ directory, then save it. Any compile errors will be displayed here.
+&gt;&gt;&gt; Compass is watching for changes. Press Ctrl-C to Stop.
+ modified assets/_scss/cityspace/_overrides.scss
+    write assets/css/styles.css
+</code></pre>
+    </div>
+
+    <p>Acquia Cloud does not support asset precompiling on the server, so assets must always be precompiled to <code class="highlighter-rouge">css/styles.css</code> before being deployed. This should not be a problem so long as you running the listener during your CSS development. However, if someone else has pushed an update to the precompiled <code class="highlighter-rouge">css/styles.css</code> you will almost certainly hit a merge conflict when you try to merge.</p>
+
+    <h4 id="resolving-a-merge-conflict-on-cssstylescss">Resolving a merge conflict on css/styles.css</h4>
+
+    <p>It’s recommended that you <em>do not include styles.css</em> in your commit and Pull Request. Instead, follow this workflow:</p>
+
+    <ol>
+      <li>Add and commit all of your <code class="highlighter-rouge">SASS</code> as you normally would, but do not include <code class="highlighter-rouge">css/styles.css</code></li>
+      <li>Get your feature branch merged into <code class="highlighter-rouge">master</code></li>
+      <li>Pull <code class="highlighter-rouge">master</code> into your local <code class="highlighter-rouge">master</code> and run <code class="highlighter-rouge">$ compass compile</code> in your SASS directory in order to force an update to the compiled CSS</li>
+      <li>Add <code class="highlighter-rouge">css/styles.css</code> in a new commit titled “Precompile CSS” (no description required), and push that new commit directly back to <code class="highlighter-rouge">master</code>.</li>
+    </ol>
+
+    <blockquote>
+      <p>You: But Matt, we’re NEVER supposed to commit directly to <code class="highlighter-rouge">master</code>! What gives?</p>
+
+      <p>Matt: Yeah I know. It’s the best I could think of. Sorry!</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="useful-drush-commands">Useful Drush commands</h2>
+
+<h3 id="database">Database</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code># Pull production database to test:
+$ drush sql-sync -vv @austin1.prod @austin1.test
+
+# Pull production database to local:
+$ drush sql-sync -vv @austin1.prod @loc.austin1
+</code></pre>
+</div>
+
+<h3 id="assets">Assets</h3>
+<p><a href="https://cloud.acquia.com/app/develop/applications/090d2f38-2e13-4b3a-8e5d-c460d582df43">Pull production files to test via Acquia</a></p>
+<div class="highlighter-rouge"><pre class="highlight"><code># Pull production files to local:
+$ drush rsync @austin1.prod:%files sites/default/
+</code></pre>
+</div>
+
+<h3 id="deployment">Deployment</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>Apply updates to config database from yml files
+$ drush @austin1.prod config-import active
+
+# Apply any pending database and entity schema updates
+$ drush @austin1.prod updb --entity-updates
+
+# Clear cache
+$ drush @austin1.prod cr
+</code></pre>
+</div>
+
+<h3 id="modules">Modules</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code># Enables downloaded module if found, otherwise prompts to allow download of the latest recommended version &amp; dependencies
+$ drush en [module]
+
+# Uninstall module
+$ drush pmu [module]
+</code></pre>
+</div>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Follow the workflow. Do your work in a feature branch, open a PR for review by the team, and make sure your commit history is clean and deliberate before considering your branch ready for merge.</p>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/examples/alt-cityspace.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Writing a commit</title>
+  <meta property="og:title" content=" | Writing a commit" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/writing-a-commit.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="writing-a-commit">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="writing-a-commit">Writing a commit</h1>
+
+<p>Our approach to commit authorship Stephen Ball’s <a href="http://www.rakeroutes.com/blog/deliberate-git/"><em>Deliberate Git</em></a> philsoophy. You can <a href="https://vimeo.com/72762735">watch a video of his presentation</a> of this philosophy from Steel City Ruby 2013.</p>
+
+<blockquote>
+  <p>“Your code can only say what it does right now. You can’t look at a method and see its history: the alternative approaches that have been considered, the algorithms that have already been outgrown, the simpler code that has been replaced, or the complicated code that’s been refactored.Not capturing this knowledge is a huge loss. In Deliberate Git I’ll share how to use Git to write detailed commits that craft a cohesive story about the code without giving up a good programming flow.”</p>
+
+  <p>Stephen Ball @ Steel City Ruby 2013</p>
+</blockquote>
+
+<h2 id="commit-criteria">Commit criteria</h2>
+
+<p>Good commits answer the following questions, as applicable.</p>
+
+<ul>
+  <li>Does the commit title state what this commit will do when merged?</li>
+  <li>Does the commit body explain why the change was required?</li>
+  <li>Is it clear why this approach was taken over others?</li>
+  <li>Was there research conducted that would be beneficial for another developer to know?</li>
+  <li>If you used a 3rd-party site like StackOverflow or a developer’s blog post, is that resource referenced in the commit message?</li>
+  <li>Are there conditions in which this approach might no longer be appropriate?</li>
+  <li>Would another developer understand full scope of the change and how to leverage or extend it?</li>
+</ul>
+
+<h2 id="commit-formatting">Commit formatting</h2>
+
+<ul>
+  <li>Commit titles should be written in the active tense.<br />
+<code class="highlighter-rouge">Add instructions for writing a commit</code><br />
+not<br />
+<code class="highlighter-rouge">Added instructions for writing a commit</code></li>
+  <li>Titles must be no longer than 72 characters</li>
+  <li>You can use simple markdown in your commit body, but understand that in some contexts it will be displayed as plain text</li>
+  <li>You cannot use header markdown (<code class="highlighter-rouge">#</code> tags) because they will be treated as code comments and the text that follows will be lost</li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+
+<p>A list of excellent commits within CoA projects has been compiled in <a href="commits.md">commits.md</a>.</p>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/writing-a-commit.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

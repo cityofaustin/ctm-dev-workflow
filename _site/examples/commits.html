@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Examples of great commits from existing City of Austin projects</title>
+  <meta property="og:title" content=" | Examples of great commits from existing City of Austin projects" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/examples/commits.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="examples-of-great-commits-from-existing-city-of-austin-projects">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="examples-of-great-commits-from-existing-city-of-austin-projects">Examples of great commits from existing City of Austin projects</h1>
+
+<p>Below are commits that follow the Deliberate Git best practices around <em>what</em> and <em>why</em> they were created. They have been replicated here because some are from private repositories which viewers of this file might not have access to.</p>
+
+<p>The format is:</p>
+
+<blockquote>
+  <p><strong><a href="">Commit title linking to commit in <code class="highlighter-rouge">master</code> branch</a></strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Commit message</p>
+
+  <p>…</p>
+
+  <p>…</p>
+</blockquote>
+
+<blockquote>
+  <p>Commit author &amp; date</p>
+</blockquote>
+
+<h3 id="austin-convention-center-website">Austin Convention Center Website</h3>
+
+<blockquote>
+  <p><strong><a href="47d7aa7506e0ff6d55269062012725e0af35482b">Work around IE bug impacting inline SVG height</a></strong></p>
+</blockquote>
+
+<blockquote>
+  <p>By default, IE 10 and 11 render the interactive floor plan SVGs as only ~150px tall, regardless of their width. Additional CSS declarations don’t seem to have any effect, so I resorted to setting the height manually, via JS, based on the SVG’s viewBox aspect ratio.</p>
+
+  <p>Note that the manual height doesn’t update when the window is resized, but I don’t think that’s worth the trouble.</p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://github.com/jcbpl">Jacob Paul</a> committed on Jan 2</p>
+</blockquote>
+
+<h3 id="cityspace">CitySpace</h3>
+
+<blockquote>
+  <p><strong><a href="https://github.com/cityofaustin/cityspace/commit/c36e916e798593a255ae7a077ee2c90cf12bdb82">Improve flexbox implementation</a></strong></p>
+</blockquote>
+
+<blockquote>
+  <p><code class="highlighter-rouge">justify-content: space-between</code> makes the last item in a row float to the right when there are fewer items than columns. The<code class="highlighter-rouge">batch</code> tag in twig allows us to insert missing elements into arrays of a given size. While adding ‘blank’ items could be considered polluting the DOM for the sake of styling, I don’t think it’s terribly offensive.</p>
+
+  <p>Had the block implementation been coded to account for the necessary margins between elements differently, we wouldn’t need to insert a spacer element, but it’s important to note that flex box is not a grid system in itself, and this is being used outside of any other grid system.</p>
+
+  <p>To change from 3 to 2 or 4 columns across, update lines 57 and 58: <code class="highlighter-rouge">cityspace-flexbox-thirds</code> » …<code class="highlighter-rouge">-halves</code> or …<code class="highlighter-rouge">-fourths</code> and <code class="highlighter-rouge">items|batch(3,</code> » <code class="highlighter-rouge">items|batch(2</code> or <code class="highlighter-rouge">items|batch(4</code>.</p>
+
+  <p>This update also allows for vertical centering of items in tiles.</p>
+
+  <p>Tested back to IE10, where blocks line up in a single column as a fallback.</p>
+
+  <p>Sources:
+https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
+https://twig.sensiolabs.org/doc/2.x/filters/batch.html</p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://github.com/sknep">Sarah Rudder</a> committed on May 30</p>
+</blockquote>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/examples/commits.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | The Development Workflow</title>
+  <meta property="og:title" content=" | The Development Workflow" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/workflow.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="the-development-workflow">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="the-development-workflow">The Development Workflow</h1>
+
+<p>The end goal is for the commit history in <code class="highlighter-rouge">master</code> to tell a logical and descriptive story about the code</p>
+
+<p>Before moving on, find 30 minutes to <a href="https://vimeo.com/72762735">watch Stephen Ball’s <em>Deliberate Git</em> talk</a>. This will help you understand how we can make our web development more efficient and sustainable by following this workflow.</p>
+
+<p>This guide will cover 3 facets of the workflow:</p>
+
+<ol>
+  <li>Writing code</li>
+  <li>Generating a clean and thorough commit history</li>
+  <li>Reviewing and merging code into deployable branches via Pull Requests</li>
+</ol>
+
+<h2 id="the-coding-process">The coding process</h2>
+
+<h3 id="always-do-your-work-in-a-feature-branch">Always do your work in a feature branch</h3>
+
+<p>Remember the 1 rule to, uh, <em>rule</em> them all? Yeah, anything on <code class="highlighter-rouge">master</code> is deployable. So your work-in-progress should not be done on <code class="highlighter-rouge">master</code>. That’s where feature branching comes in.</p>
+
+<ol>
+  <li>
+    <p>Start with a clean <code class="highlighter-rouge">master</code> branch that’s deployed on production.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ git checkout master
+$ git pull origin master
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Create your feature branch using a semantically-descriptive name with hyphens as separators
+Good examples: <code class="highlighter-rouge">ci-integration</code> or <code class="highlighter-rouge">homepage-refactor</code>
+Bad examples: <code class="highlighter-rouge">matt</code> or  <code class="highlighter-rouge">updates</code></p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ git checkout -b my-feature
+Switched to a new branch 'my-feature'
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<h3 id="make-incremental-commits-throughout-your-process">Make incremental commits throughout your process</h3>
+
+<p>As part of your flow it’s important to create separate commits for logical groups of code. For example, let’s say you’re doing some frontend work on a homepage, and as part of that effort you decide to replace a static styles.css stylesheet with a SASS pipeline. In that case you have at least two related but logically distinct sets of changes: The SASS structure and associated dependences, and then the UI changes that have to be made in the CSS and HTML. Once you had built the SASS pipeline you would want to create a commit for that change, probably titled something like “Implement SASS”. Next you would move on to your UI updates and roll those into a subsequent commit (which likely touches some of the same files), perhaps called “Update homepage widget styling”.</p>
+
+<p>Along the way it is recommended that you incrementally commit your work-in-progress. For this you can use the <code class="highlighter-rouge">-m</code> flag in your commit to write a quick commit title directly from terminal. In the example above, when you created the <code class="highlighter-rouge">sass/</code> directory you might have run:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git add sass/
+$ git commit -m "wip create initial sass directory"
+</code></pre>
+</div>
+
+<p>It’s okay that your SASS work was incomplete up to that point. Again, the goal is to make many small commits that can later be combined into more cohesive groupings. Remember - it is always easier to combine tiny commits into a single commit than it is to break a single commit into smaller, more logical commits.</p>
+
+<p>Then, once you have changes on <code class="highlighter-rouge">homepage.html</code>, you could follow the same process to isolate that work:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git add homepage.html
+$ git commit -m "wip initial homepage UI updates"
+</code></pre>
+</div>
+
+<p>Even if you had already made changes to <code class="highlighter-rouge">homepage.html</code> and <code class="highlighter-rouge">sass/</code>, you can still <em>stage</em> those changes and commit them separately by using <code class="highlighter-rouge">$ git add [thing(s)-you-want-to-stage]</code> instead of <code class="highlighter-rouge">$ git add .</code>, which assumes you want to include all of your local changes into a single commit. You can also add multiple individual things to a single commit. Let’s say that after the pipeline was created you wanted to add a separate SASS file for footer styling. This would consist of at least 2 file changes - the <code class="highlighter-rouge">_footer.scss</code> styles and the <code class="highlighter-rouge">@import 'footer'</code> declaration in <code class="highlighter-rouge">styles.css</code>. Since those changes relate to a single logical item of work it makes sense for them to be in the same commit. To stage them both and commit you can do:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git add _footer.scss
+$ git add styles.css
+</code></pre>
+</div>
+
+<p>OR you can add them both in a single declaration</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git add _footer.scss styles.css
+</code></pre>
+</div>
+
+<p>Of course if those are your only local changes you could still do <code class="highlighter-rouge">$ git add .</code> but it’s helpful to know all the different ways to go from local file changes to an update in the Git changelog.</p>
+
+<h3 id="push-your-commits-to-the-remote">Push your commits to the remote</h3>
+
+<p>Even if you’re not done working yet it’s a good idea to push your changes to the GitHub remote. This allows you to get feedback on your work (if desired) and provides a safe backup of your code in case your local branch gets unwieldy.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature
+</code></pre>
+</div>
+
+<h2 id="the-cleanup-process">The cleanup process</h2>
+
+<p>Once your code changes are complete it’s time to turn the messy commit history into clear stories about the changes you made.</p>
+
+<p>Follow the instructions in <a href="/rebase.html">rebase.md</a> to rewrite your commit history to provide titles and messages that will be useful for anyone else who might have to work on the app in the future.</p>
+
+<h2 id="the-review-process">The review process</h2>
+
+<p><a href="https://help.github.com/articles/about-pull-requests/">Pull Requests</a> are the cornerstone of the development workflow. They allow us to get feedback on our changes, to isolate work-in-progress from deployed environments, and to</p>
+
+<p>Ultimately your commits from <code class="highlighter-rouge">my-feature</code> will need to get merged into <code class="highlighter-rouge">master</code> in order for them to be deployed to your application’s <code class="highlighter-rouge">Production</code> environment.</p>
+
+<h3 id="merging-code-with-pull-requests">Merging code with Pull Requests</h3>
+
+<ul>
+  <li>Once your code and commit(s) are in the repository you can invite other developers to review it.</li>
+  <li>If you want to compare it against a specific branch then you can open a <a href="https://help.github.com/articles/about-pull-requests/">Pull Request</a>.</li>
+  <li>Once your code has been tested and reviewed you are ready to open a Pull Request for <code class="highlighter-rouge">my-feature</code> into <code class="highlighter-rouge">master</code>. Set <code class="highlighter-rouge">master</code> as the <em>base</em> and <code class="highlighter-rouge">my-feature</code> as the <em>compare</em> branch.</li>
+  <li>The PR is the final opportunity to check for code conflicts or to have a team member review the changes.</li>
+  <li>When the review is complete you can Accept &amp; Merge the PR. This will add your new commits from <code class="highlighter-rouge">my-feature</code> into the history of <code class="highlighter-rouge">master</code>, and should trigger a CI deployment to your production server.</li>
+  <li>If you need to make changes, return to <code class="highlighter-rouge">my-feature</code> and continue your development workflow. Any new commits should be squashed or fixed-up into the relevant original commit. Follow the <a href="http://www.rakeroutes.com/blog/deliberate-git/#using-git-rebase--i">steps for performing an interactive rebase</a> in the <em>Deliberate Git</em> guide.</li>
+</ul>
+
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/workflow.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>

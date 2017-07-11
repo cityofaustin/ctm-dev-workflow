@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title> | Project Overview</title>
+  <meta property="og:title" content=" | Project Overview" />
+
+
+
+  <meta name="description" content="">
+  <meta property="og:description" content="" />
+
+
+  <link rel="canonical" href="http://localhost:4000/examples/cityspace-readme.html" />
+
+  <link rel="stylesheet" href="/assets/vendor/uswds-0.12.1/css/uswds.min.css">
+</head>
+
+
+  <body class="project-overview">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+<div class="usa-disclaimer">
+  <div class="usa-grid">
+    <div class="usa-disclaimer-official">
+      <p>An official website of the City of Austin.</p>
+    </div>
+  </div>
+</div>
+
+<header class="usa-header" role="banner">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="/" accesskey="1" title="Home" aria-label="Home"></a>
+        </em>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="usa-overlay"></div>
+
+
+    <div class="usa-grid">
+      
+        <aside class="usa-width-one-fourth">
+          
+          
+
+
+
+
+  
+  <ul class="
+    usa-sidenav-list
+  "><li>
+      <a href="/">
+        CoA Application Development Policies and Practices
+      </a>
+    </li>
+  
+
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+      <li>
+        <a href="/services/">Tools &amp; services used by CoA developers</a>
+        
+
+
+
+
+
+      </li></ul>
+
+
+        </aside>
+      
+
+      <main id="main-content" class="usa-width-three-fourths usa-content">
+        <h1 id="project-overview">Project Overview</h1>
+<p>CitySpace is the City of Austin employee intranet. It uses the Drupal 8 CMS and is deployed on Acquia Cloud using a Lightning distribution.</p>
+
+<h1 id="getting-started">Getting Started</h1>
+
+<h3 id="1-set-up-your-acquia-cloud-account">1. Set up your Acquia Cloud account</h3>
+
+<ol>
+  <li>
+    <p>Request an invitation to the CitySpace project on Acquia Cloud</p>
+  </li>
+  <li>
+    <p>Copy your SSH public key and add it to your Acquia Cloud account
+<code class="highlighter-rouge">$ pbcopy &lt; ~/.ssh/id_rsa.pub</code></p>
+  </li>
+  <li>
+    <p>Confirm the SSH key is configured (you may have to wait several minutes for your key to propagate)</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> $ ssh austin1.test@staging-16599.prod.hosting.acquia.com
+</code></pre>
+    </div>
+
+    <p>Your Hardware Enablement Stack (HWE) is supported until April 2017.</p>
+
+    <p>Welcome to Acquia Cloud. For information about shell access on this
+server, please see: https://docs.acquia.com/acquia-cloud/ssh</p>
+
+    <p>Usage may be monitored and audited.</p>
+
+    <p>austin1@staging-16599:/mnt/gfs/home/austin1$</p>
+
+    <h1 id="exit-the-shell">Exit the shell</h1>
+
+    <p>austin1@staging-16599:/mnt/gfs/home/austin1$ exit
+logout
+Connection to staging-16599.prod.hosting.acquia.com closed.Clone the Github repository
+ ​````</p>
+  </li>
+  <li>
+    <p>Request a Drupal Admin account on the Acquia server and follow the invitation instructions.
+<em>This step must be completed before you download the database and upload it to Dev Desktop</em></p>
+  </li>
+</ol>
+
+<h3 id="2-clone-the-repository">2. Clone the repository</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git clone git@github.com:cityofaustin/cityspace.git
+</code></pre>
+</div>
+
+<h3 id="3-add-acquia-as-a-remote">3. Add Acquia as a remote</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd cityspace/
+$ git remote add acquia austin1@svn-6135.prod.hosting.acquia.com:austin1.git
+</code></pre>
+</div>
+
+<h3 id="4-install-and-configure-local-environment">4. Install and configure local environment</h3>
+
+<ol>
+  <li>
+    <p>Install dependencies
+We require several gems for CSS management. Use bundler to install them.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code># If you don't have bundler yet, install it
+$ gem install bundler
+
+# Once bundler is installed:
+$ cd docroot/themes/coa_intranet
+$ bundle install
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Download and install Dev Desktop (“DD”) from https://dev.acquia.com/downloads.</p>
+
+    <ol>
+      <li>Set “Desktop sites folder” to wherever you save your local projects</li>
+      <li>After installation, deselect “Launch Acquia Dev Desktop” and click “Finish”.</li>
+      <li>Note that if you have an older version of Drush installed (for example, if you installed it as part of our work on the Drupal 7 AustinTexas.gov) you might need to unlink that older version of drush for this project.</li>
+    </ol>
+  </li>
+  <li>
+    <p>Download <a href="https://drive.google.com/file/d/0B-Jq2W8AQ6qOVXJ3U3JadXA3Q2M/view?usp=sharing">the drush aliases file</a> from Google Drive and move it to the <code class="highlighter-rouge">~/.drush/</code> directory.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ mv ~/PATH/TO/DOWNLOADED/austin1.aliases.drushrc.php ~/.drush/
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Download the Acquia Cloud database to your Desktop.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ cd MY_PROJECT_DIRECTORY/
+$ drush @austin1.prod sql-dump &gt; ~/Desktop/local.sql
+</code></pre>
+    </div>
+
+    <p><em>You can specify a different destination path - The important thing is to download it outside of your project directory so that it does not get added to the git repository.</em></p>
+  </li>
+  <li>
+    <p>Launch DevDesktop and select “Start with an existing Drupal site located on my computer”.</p>
+
+    <ol>
+      <li>Set the “Local codebase folder” to the  <code class="highlighter-rouge">docroot/</code> directory in the CitySpace project.</li>
+      <li>Set the “Local site name” to “austin1”.</li>
+      <li>Under the database dropdown select “Start with MySQL database dump file” and upload the <code class="highlighter-rouge">local.sql</code> file you downloaded earlier.</li>
+    </ol>
+  </li>
+  <li>
+    <p>Ensure Dev Desktop is running (green lights next to “Apache” and “MySQL”) and click on the “Local site” link to ensure your local server can serve the homepage.</p>
+  </li>
+  <li>
+    <p>Copy <code class="highlighter-rouge">docroot/sites/cofa.settings.local.php</code> to <code class="highlighter-rouge">docroot/sites/settings.local.php</code></p>
+  </li>
+  <li>
+    <p>Sign In using the same credentials you established for your Drupal Admin account.</p>
+  </li>
+</ol>
+
+<h1 id="contributing">Contributing</h1>
+
+<h3 id="dev-workflow">Dev Workflow</h3>
+
+<p>Our workflow is documented at <a href="workflow.md">workflow.md</a></p>
+
+<h3 id="legacy-documentation">Legacy documentation</h3>
+
+<p><a href="https://github.austintexas.gov/ctm-webservices/cityspace_cloud/wiki">https://github.austintexas.gov/ctm-webservices/cityspace_cloud/wiki</a></p>
+
+
+      </main>
+    </div>
+
+    <footer>
+  <div class="usa-grid">
+    <div class="usa-width-one-half">
+      <p><a href="http://github.com/cityofaustin/ctm-dev-workflow/edit/master/examples/cityspace-readme.md">Edit this page</a></p>
+    </div>
+</footer>
+
+
+
+    <script src="/assets/vendor/uswds-0.12.1/js/uswds.min.js"></script>
+  </body>
+
+</html>
