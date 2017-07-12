@@ -1,2 +1,3 @@
-url: "https://cityofaustin.github.io/ctm-dev-workflow"
+url: "https://cityofaustin.github.io"
+baseurl: "/ctm-dev-workflow"
 theme: jekyll-theme-zilker
