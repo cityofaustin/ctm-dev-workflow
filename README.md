@@ -1,12 +1,10 @@
 # CoA Application Development Policies and Practices
 
+Guides published at https://cityofaustin.github.io/ctm-dev-workflow/
+
 This repo is a collaboration and publishing space for the CTM Application Development workflow. CoA software and web developers are encouraged to read the documentation and sign up for in-person training to learn how to incorporate the workflow into their daily work.
 
 For now the guides will live here as markdown files but might evolve to be part of a broader documentation site, akin to [18F's Guides](https://guides.18f.gov).
-
-## Guides
-
-Links to each of the individual guides can be found at [guides.md](guides.md).
 
 ## Support
 
