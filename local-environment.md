@@ -14,7 +14,7 @@ Download and install Atom from [atom.io](https://atom.io)
 ## Download and install Git
 
 You'll need Git installed on your system in order to do pretty much anything related to this workflow. This is not the GUI client, but instead a system-level installation that allows you to incorporate independent tools like Atom and Terminal to your workflow.  
-Download at https://git-scm.com/downloads
+Download at [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ## Set Atom as your default Git editor
 
