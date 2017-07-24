@@ -22,11 +22,23 @@ In order to adhere to the development process it is necessary to set a default G
 
 Again, you are welcome to configure any editor you wish, but the instructions below will focus on using Atom on your Windows or Mac machine.
 
-Launch Terminal.app on your Mac and enter the following command:  
+#### On Mac:  
+
+Launch Terminal.app on your Mac and enter the following command:    
 
 ```
 $ git config --global core.editor "atom --wait"
 ```
+
+#### On Windows:
+
+1. Find the system path to your Atom installation. It might be something like `C:/Users/UserName/AppData/Local/atom/app-1.18.0/atom.exe`.
+
+2. Launch Git Bash and enter the following command, replacing `<Atom-Installation-Path` with the system path from step 1:  
+
+   ```
+   $ git config --global core.editor "<Atom-Installation-Path>"
+   ```
 
 ## Store your GitHub credentials so you don't have to provide them for every request
 
