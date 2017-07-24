@@ -42,7 +42,7 @@ $ git config --global core.editor "atom --wait"
 
 ## Store your GitHub credentials so you don't have to provide them for every request
 
-HTTPS is the recommended authentication method for your machine's communication with GitHub. To avoid having to re-enter your credentials for every request you can cache your GitHub credentials in the _credential helper_. [See the instructions on GitHub.com](https://help.github.com/articles/caching-your-github-password-in-git/#platform-mac).
+HTTPS is the recommended authentication method for your machine's communication with GitHub. To avoid having to re-enter your credentials for every request you can cache your GitHub credentials in the _credential helper_. [See the instructions on GitHub.com](https://help.github.com/articles/caching-your-github-password-in-git/).
 
 There is a sample repository you can use to trigger the initial authentication request. Here's how to use it:
 
