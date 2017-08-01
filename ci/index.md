@@ -6,7 +6,7 @@ For now, this document will focus on CI for _ColdFusion applications deployed to
 
 ## Guidelines
 
-As covered in [the workflow guide](../workflow.md), your application should have at least 2 core deployment branches: 1 for production and 1 for testing. You may have an additional testing branch that deploys to a server with slightly different permission and access controls than your main testing branch. This may be called `dev`.
+As covered in [the workflow guide](../workflow.md), your application should have at least 2 core deployment branches: 1 for production and 1 for testing. You might have an additional testing branch that deploys to a server with slightly different permission and access controls than your main testing branch. This might be called `dev`.
 
 The point of CI is that code updates are _automatically_ published to the appropriate server. Therefore the following automation should be configured:
 
