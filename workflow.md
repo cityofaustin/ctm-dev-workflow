@@ -94,7 +94,7 @@ Ultimately your commits from `my-feature` will need to get merged into `master` 
 - Once your code has been tested and reviewed you are ready to open a Pull Request for `my-feature` into `master`. Set `master` as the _base_ and `my-feature` as the _compare_ branch.
 - The PR is the final opportunity to check for code conflicts or to have a team member review the changes.
 - When the review is complete you can Accept & Merge the PR. This will add your new commits from `my-feature` into the history of `master`, and should trigger a CI deployment to your production server.
-- If you need to make changes, return to `my-feature` and continue your development workflow. Any new commits should be squashed or fixed-up into the relevant original commit. Follow the [steps for performing an interactive rebase](http://www.rakeroutes.com/blog/deliberate-git/#using-git-rebase--i) in the *Deliberate Git* guide.
+- If you need to make changes, return to `my-feature` and continue your development workflow. Any new commits should be squashed or fixed-up into the relevant original commit. Follow the steps in [rebase.md](rebase.md).
 
 
 

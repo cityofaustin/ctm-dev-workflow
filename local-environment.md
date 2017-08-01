@@ -4,7 +4,7 @@ Specific projects might have their own sets of required configurations, so the f
 
 These instructions are focused on setting up a Mac OS X development environment.
 
-If you help configuring a Windows machine please [sign up for a developer training session](https://docs.google.com/forms/d/e/1FAIpQLSdeJtZzODlmgQEAaupbCoaekyXoCN32lk2ft0JWwLG5sewxhA/viewform?usp=sf_link).
+If you need help configuring a Windows machine please [sign up for a developer training session](https://docs.google.com/forms/d/e/1FAIpQLSdeJtZzODlmgQEAaupbCoaekyXoCN32lk2ft0JWwLG5sewxhA/viewform?usp=sf_link).
 
 ## Download and install Atom
 
@@ -14,7 +14,7 @@ Download and install Atom from [atom.io](https://atom.io)
 ## Download and install Git
 
 You'll need Git installed on your system in order to do pretty much anything related to this workflow. This is not the GUI client, but instead a system-level installation that allows you to incorporate independent tools like Atom and Terminal to your workflow.  
-Download at https://git-scm.com/downloads
+Download at [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ## Set Atom as your default Git editor
 
